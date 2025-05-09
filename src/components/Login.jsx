@@ -12,8 +12,7 @@ const Login = () => {
   const [generalError, setGeneralError] = useState('');
 
   const validationSchema = Yup.object({
-    email: Yup.string().email('Email inválido').required('Requerido'),
-    password: Yup.string().required('Requerido'),
+    email: Yup.string().email('Email inválido').required('Requerido'), 
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
