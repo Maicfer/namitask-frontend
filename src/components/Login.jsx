@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Container, Card, Button } from 'react-bootstrap';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import api from '../services/api'; // ✅ Usamos la instancia de axios con baseURL
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -24,11 +24,11 @@ const Login = () => {
         password: values.password,
       };
 
-      const response = await axios.post('http://localhost:8000/api/login/', payload);
-      loginUser(response.data);
+      const response = await api.post('/token/', payload); // ✅ Corrige el endpoint
+      loginUser(response.data); // Guarda el token en tu contexto
       navigate('/dashboard');
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.error) {
+      if (error.response?.data?.error) {
         setGeneralError(error.response.data.error);
       } else {
         setGeneralError('Error desconocido. Intenta de nuevo.');
@@ -67,6 +67,8 @@ const Login = () => {
 };
 
 export default Login;
+
+
 
 
 
