@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_API_URL || 'https://namitask.onrender.com/';
+const baseURL = import.meta.env.VITE_API_URL || 'https://namitask.onrender.com/api/token/';
 
 const api = axios.create({
   baseURL: baseURL,
@@ -10,4 +10,4 @@ const api = axios.create({
   },
 });
 
-export default api;
+export default api; 
