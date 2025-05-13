@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import api from "../services/api"; // ✅ Usa axios con baseURL
+import "../styles/Profile.css"; // Opcional: si usas clases personalizadas
 
 const Profile = () => {
   const { authTokens, user } = useContext(AuthContext);
@@ -16,6 +17,7 @@ const Profile = () => {
     genero: "",
   });
   const [foto, setFoto] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!authTokens) {
@@ -25,7 +27,7 @@ const Profile = () => {
 
     const fetchProfile = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/profile/", {
+        const response = await api.get("/profile/", {
           headers: { Authorization: `Bearer ${authTokens.access}` },
         });
         setPerfil(response.data);
@@ -38,7 +40,7 @@ const Profile = () => {
         });
         setFotoPreview(response.data.foto || null);
       } catch (error) {
-        console.error("Error al cargar perfil:", error);
+        console.error("Error al cargar el perfil:", error);
       }
     };
 
@@ -58,15 +60,16 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+
     Object.entries(form).forEach(([key, value]) => {
       formData.append(key, value);
     });
-    if (foto) {
-      formData.append("foto", foto);
-    }
+
+    if (foto) formData.append("foto", foto);
 
     try {
-      await axios.put("http://localhost:8000/api/profile/", formData, {
+      setLoading(true);
+      await api.put("/profile/", formData, {
         headers: {
           Authorization: `Bearer ${authTokens.access}`,
           "Content-Type": "multipart/form-data",
@@ -74,96 +77,107 @@ const Profile = () => {
       });
       alert("Perfil actualizado correctamente.");
     } catch (error) {
-      console.error("Error al actualizar perfil:", error);
-      alert("Error al actualizar perfil.");
+      console.error("Error al actualizar el perfil:", error);
+      alert("Hubo un problema al actualizar el perfil.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (!perfil) return <div className="text-center mt-8">Cargando perfil...</div>;
+  if (!perfil) return <div className="text-center mt-5">Cargando perfil...</div>;
 
   return (
-    <div className="min-h-screen p-8 bg-gray-100 pt-24">
-      <div className="max-w-xl mx-auto bg-white rounded-xl p-6 shadow-lg">
-        <h2 className="text-xl font-bold text-center text-indigo-700 mb-4">Mi Perfil</h2>
+    <div className="container mt-5 pt-4">
+      <div className="card p-4 shadow-lg mx-auto" style={{ maxWidth: "600px" }}>
+        <h2 className="text-center text-primary mb-4">Mi Perfil</h2>
 
         {fotoPreview && (
-          <div className="text-center mb-4">
+          <div className="text-center mb-3">
             <img
-              src={`http://localhost:8000${fotoPreview}`}
+              src={fotoPreview.startsWith("http") ? fotoPreview : `http://localhost:8000${fotoPreview}`}
               alt="Foto de perfil"
-              className="w-32 h-32 mx-auto rounded-full object-cover"
+              className="rounded-circle object-fit-cover"
+              style={{ width: "120px", height: "120px" }}
             />
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="nombre_completo"
-            placeholder="Nombre completo"
-            value={form.nombre_completo}
-            onChange={handleChange}
-            className="form-control"
-          />
-          <input
-            type="text"
-            name="celular"
-            placeholder="Celular"
-            value={form.celular}
-            onChange={handleChange}
-            className="form-control"
-          />
-          <input
-            type="text"
-            name="ciudad"
-            placeholder="Ciudad"
-            value={form.ciudad}
-            onChange={handleChange}
-            className="form-control"
-          />
-          <input
-            type="text"
-            name="pais"
-            placeholder="País"
-            value={form.pais}
-            onChange={handleChange}
-            className="form-control"
-          />
-          <select
-            name="genero"
-            value={form.genero}
-            onChange={handleChange}
-            className="form-control"
-          >
-            <option value="">Selecciona género</option>
-            <option value="M">Masculino</option>
-            <option value="F">Femenino</option>
-            <option value="O">Otro</option>
-          </select>
-          <input type="file" onChange={handleFotoChange} className="form-control" />
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label>Nombre completo</label>
+            <input
+              type="text"
+              name="nombre_completo"
+              className="form-control"
+              value={form.nombre_completo}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <div className="flex justify-between mt-6 flex-wrap gap-3">
-            <button
-              type="submit"
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+          <div className="mb-3">
+            <label>Celular</label>
+            <input
+              type="text"
+              name="celular"
+              className="form-control"
+              value={form.celular}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label>Ciudad</label>
+            <input
+              type="text"
+              name="ciudad"
+              className="form-control"
+              value={form.ciudad}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label>País</label>
+            <input
+              type="text"
+              name="pais"
+              className="form-control"
+              value={form.pais}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label>Género</label>
+            <select
+              name="genero"
+              className="form-control"
+              value={form.genero}
+              onChange={handleChange}
             >
-              Guardar cambios
-            </button>
+              <option value="">Selecciona una opción</option>
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+              <option value="O">Otro</option>
+            </select>
+          </div>
 
+          <div className="mb-3">
+            <label>Foto de perfil</label>
+            <input type="file" className="form-control" onChange={handleFotoChange} />
+          </div>
+
+          <div className="d-flex justify-content-between mt-4">
+            <button type="submit" className="btn btn-success" disabled={loading}>
+              {loading ? "Guardando..." : "Guardar cambios"}
+            </button>
             <button
               type="button"
+              className="btn btn-secondary"
               onClick={() => navigate("/dashboard")}
-              className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
             >
-              Ir al Dashboard
-            </button>
-
-            <button
-              type="button"
-              onClick={() => navigate("/cambiar-password")}
-              className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
-            >
-              Cambiar contraseña
+              Volver
             </button>
           </div>
         </form>
@@ -173,9 +187,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-
-
-
-
-
