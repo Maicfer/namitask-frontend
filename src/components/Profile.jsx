@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api"; // ✅ Usa axios con baseURL
-import "../styles/Profile.css"; // Opcional: si usas clases personalizadas
+
 
 const Profile = () => {
   const { authTokens, user } = useContext(AuthContext);
