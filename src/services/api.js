@@ -1,13 +1,13 @@
+// src/services/api.js
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_API_URL || 'https://namitask.onrender.com/api/';
-
 const api = axios.create({
-  baseURL: baseURL,
-  timeout: 10000,
+  baseURL: 'https://namitask.onrender.com',
+  withCredentials: true,  // ⬅️ esto es CLAVE
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-export default api; 
+export default api;
+
