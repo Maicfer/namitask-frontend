@@ -1,19 +1,26 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
   server: {
-    historyApiFallback: true, // para desarrollo
+    port: 5173,
   },
   build: {
     outDir: 'dist',
   },
+  base: '/',
+  // 👇 Esta parte es fundamental para SPA en producción
   preview: {
-    port: 4173,
+    fallback: true,
   }
-})
-
+});
 
 
 
