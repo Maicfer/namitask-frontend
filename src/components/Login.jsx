@@ -22,7 +22,7 @@ const Login = () => {
       setLoading(true);
       setGeneralError('');
 
-      const response = await api.post('/token/', {
+      const response = await api.post('/api/token/', {
         email: values.email.trim().toLowerCase(),
         password: values.password,
       });
