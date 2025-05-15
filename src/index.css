@@ -1,3 +1,4 @@
+/* index.css */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 body {
@@ -7,14 +8,42 @@ body {
   color: #333;
 }
 
-/* Botones globales */
+/* Botones globales (CSS Estándar) */
 .button-primary {
-  @apply px-4 py-2 border border-indigo-700 text-indigo-700 rounded hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 transition;
+  padding: 0.5rem 1rem;
+  border: 1px solid #6366f1; /* Reemplaza con tu color indigo */
+  color: #6366f1;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
   margin-right: 0.5rem;
 }
 
+.button-primary:hover {
+  background-color: #6366f1;
+  color: white;
+}
+
+.button-primary:focus {
+  outline: 2px solid #a78bfa; /* Un tono más claro de tu indigo */
+  outline-offset: 2px;
+}
+
 .button-secondary {
-  @apply px-4 py-2 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-400 transition;
+  padding: 0.5rem 1rem;
+  border: 1px solid #dc2626; /* Reemplaza con tu color rojo */
+  color: #dc2626;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-secondary:hover {
+  background-color: #dc2626;
+  color: white;
+}
+
+.button-secondary:focus {
+  outline: 2px solid #fca5a5; /* Un tono más claro de tu rojo */
+  outline-offset: 2px;
 }
 
 /* Estilo para el fondo del dashboard */
@@ -37,20 +66,20 @@ form > label {
   padding-right: 1rem;
 }
 
-/* Estilos para el Navbar (Modificado) */
+/* Estilos para el Navbar (Modificado - Sin Tailwind) */
 nav.navbar-floating {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-50;
-  background-color: rgba(255, 255, 255, 0.95); /* Más opaco para mejor contraste */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Sombra un poco más pronunciada */
-  padding: 0.5rem 1rem; /* Padding vertical reducido, horizontal ajustado */
+  background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco con ligera transparencia */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Sombra suave */
+  padding: 0.5rem 1rem;
   display: flex;
   justify-content: flex-start; /* Alinea el logo a la izquierda */
   align-items: center;
-  width: 100%; /* Ocupa todo el ancho */
+  width: 100%;
 }
 
 .navbar-floating .logo-container {
@@ -61,14 +90,14 @@ nav.navbar-floating {
 }
 
 .navbar-floating .logo {
-  height: 2.5rem; /* Ajusta el tamaño del logo dentro del contenedor */
+  height: 2.5rem; /* Tamaño del logo */
   width: auto;
-  margin-right: 0.75rem; /* Espacio a la derecha del logo */
+  margin-right: 0.75rem;
 }
 
 .navbar-floating .logo-text {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #indigo-700;
-  line-height: 2.5rem; /* Centra verticalmente el texto con el logo */
+  color: #0d6efd; /* Color primario de Bootstrap (puedes cambiarlo) */
+  line-height: 2.5rem; /* Centra verticalmente el texto */
 }
