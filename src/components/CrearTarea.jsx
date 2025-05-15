@@ -60,11 +60,8 @@ const CrearTarea = () => {
   };
 
   return (
-    <div className="min-h-screen p-8 bg-gray-100 relative">
-      <div className="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md relative">
-        {/* Imagen de fondo (opcional) */}
-        {/* <div className="absolute inset-0 bg-image" style={{ backgroundImage: 'url("https://www.wimi-teamwork.com/static/medias/logiciels-collaboration-1280x640-1.png")', opacity: 0.1, zIndex: -1 }}></div> */}
-
+    <div className="min-h-screen p-8 bg-gray-100">
+      <div className="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4 text-center text-indigo-700">
           Crear nueva tarea
         </h2>
