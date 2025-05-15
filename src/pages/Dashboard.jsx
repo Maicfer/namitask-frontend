@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import "../../index.css"; // Importa los estilos generales
+import "../index.css"; // Importa los estilos generales
 
 const Dashboard = () => {
   const { user, logoutUser } = useContext(AuthContext);
