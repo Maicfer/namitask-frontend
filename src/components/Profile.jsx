@@ -27,7 +27,7 @@ const Profile = () => {
 
     const fetchProfile = async () => {
       try {
-        const response = await api.get("/profile/", {
+        const response = await api.get("/api/profile/", {
           headers: { Authorization: `Bearer ${authTokens.access}` },
         });
         setPerfil(response.data);
