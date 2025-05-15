@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-import "../index.css";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const CrearTarea = () => {
   const { authTokens } = useContext(AuthContext);
@@ -22,7 +22,7 @@ const CrearTarea = () => {
       try {
         const res = await axios.get("https://namitask.onrender.com/api/etiquetas/", {
           headers: {
-            Authorization: `Bearer ${authTokens?.access}`,
+            Authorization: Bearer ${authTokens?.access},
           },
         });
         setEtiquetas(res.data);
@@ -48,7 +48,7 @@ const CrearTarea = () => {
     try {
       await axios.post("https://namitask.onrender.com/api/tareas/", form, {
         headers: {
-          Authorization: `Bearer ${authTokens?.access}`,
+          Authorization: Bearer ${authTokens?.access},
         },
       });
       alert("Tarea creada correctamente.");
@@ -73,7 +73,7 @@ const CrearTarea = () => {
               name="titulo"
               value={form.titulo}
               onChange={handleChange}
-              className="w-full border p-2 rounded input-modern"
+              className="w-full border p-2 rounded"
               required
             />
           </div>
@@ -84,7 +84,7 @@ const CrearTarea = () => {
               name="descripcion"
               value={form.descripcion}
               onChange={handleChange}
-              className="w-full border p-2 rounded textarea-modern"
+              className="w-full border p-2 rounded"
               rows="3"
             ></textarea>
           </div>
@@ -95,7 +95,7 @@ const CrearTarea = () => {
               name="prioridad"
               value={form.prioridad}
               onChange={handleChange}
-              className="w-full border p-2 rounded select-modern"
+              className="w-full border p-2 rounded"
             >
               <option value="baja">Baja</option>
               <option value="media">Media</option>
@@ -110,7 +110,7 @@ const CrearTarea = () => {
               name="fecha_limite"
               value={form.fecha_limite}
               onChange={handleChange}
-              className="w-full border p-2 rounded input-modern"
+              className="w-full border p-2 rounded"
             />
           </div>
 
@@ -121,7 +121,7 @@ const CrearTarea = () => {
               multiple
               value={form.etiquetas_ids}
               onChange={handleChange}
-              className="w-full border p-2 rounded select-modern"
+              className="w-full border p-2 rounded"
             >
               {etiquetas.map((etiqueta) => (
                 <option key={etiqueta.id} value={etiqueta.id}>
@@ -133,17 +133,11 @@ const CrearTarea = () => {
 
           <button
             type="submit"
-            className="w-full button-primary"
+            className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
           >
             Crear tarea
           </button>
         </form>
-
-        <div className="mt-4 text-center">
-          <Link to="/tablero" className="button-secondary">
-            Volver al Tablero
-          </Link>
-        </div>
       </div>
     </div>
   );
