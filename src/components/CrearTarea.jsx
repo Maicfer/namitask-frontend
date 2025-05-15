@@ -48,7 +48,7 @@ const CrearTarea = () => {
     try {
       await axios.post("https://namitask.onrender.com/api/tareas/", form, {
         headers: {
-          Authorization: Bearer ${authTokens?.access},
+          Authorization: `Bearer ${authTokens?.access}`,
         },
       });
       alert("Tarea creada correctamente.");
