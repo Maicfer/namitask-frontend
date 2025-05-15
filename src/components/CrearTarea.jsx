@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useNavigate, Link } from "react-router-dom"; // Importamos Link
+import "../index.css"; // Asegúrate de que esté importado
 
 const CrearTarea = () => {
   const { authTokens } = useContext(AuthContext);
@@ -60,8 +60,11 @@ const CrearTarea = () => {
   };
 
   return (
-    <div className="min-h-screen p-8 bg-gray-100">
-      <div className="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div className="min-h-screen p-8 bg-gray-100 relative"> {/* Añadimos 'relative' al contenedor principal */}
+      <div className="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md relative">
+        {/* Imagen de fondo (opcional) */}
+        {<div className="absolute inset-0 bg-image" style={{ backgroundImage: 'url("https://www.wimi-teamwork.com/static/medias/logiciels-collaboration-1280x640-1.png")', opacity: 0.1, zIndex: -1 }}></div>}
+
         <h2 className="text-2xl font-bold mb-4 text-center text-indigo-700">
           Crear nueva tarea
         </h2>
@@ -73,7 +76,7 @@ const CrearTarea = () => {
               name="titulo"
               value={form.titulo}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded input-modern" // Clase para estilos personalizados
               required
             />
           </div>
@@ -84,7 +87,7 @@ const CrearTarea = () => {
               name="descripcion"
               value={form.descripcion}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded textarea-modern" // Clase para estilos personalizados
               rows="3"
             ></textarea>
           </div>
@@ -95,7 +98,7 @@ const CrearTarea = () => {
               name="prioridad"
               value={form.prioridad}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded select-modern" // Clase para estilos personalizados
             >
               <option value="baja">Baja</option>
               <option value="media">Media</option>
@@ -110,7 +113,7 @@ const CrearTarea = () => {
               name="fecha_limite"
               value={form.fecha_limite}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded input-modern" // Clase para estilos personalizados
             />
           </div>
 
@@ -121,7 +124,7 @@ const CrearTarea = () => {
               multiple
               value={form.etiquetas_ids}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded select-modern" // Clase para estilos personalizados
             >
               {etiquetas.map((etiqueta) => (
                 <option key={etiqueta.id} value={etiqueta.id}>
@@ -133,11 +136,18 @@ const CrearTarea = () => {
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
+            className="w-full button-primary" // Usamos la clase button-primary
           >
             Crear tarea
           </button>
         </form>
+
+        {/* Botón para volver al tablero */}
+        <div className="mt-4 text-center">
+          <Link to="/tablero" className="button-secondary">
+            Volver al Tablero
+          </Link>
+        </div>
       </div>
     </div>
   );
