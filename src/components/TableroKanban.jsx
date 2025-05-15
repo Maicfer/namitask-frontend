@@ -35,7 +35,7 @@ const TableroKanban = () => {
     <div className="p-6 min-h-screen bg-gray-100">
       <h2 className="text-3xl font-bold text-center text-indigo-700 mb-4">Tablero de Tareas</h2>
 
-      {/* Menú del Tablero - Colocado directamente debajo del título */}
+      {/* Menú del Tablero - Insertado directamente debajo del título */}
       <nav className="bg-white rounded-lg shadow p-4 mb-6 flex justify-center gap-4 border border-gray-200">
         <Link to="/dashboard" className="button-primary">
           Inicio
