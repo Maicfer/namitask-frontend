@@ -1,8 +1,3 @@
-/* index.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 body {
@@ -53,26 +48,27 @@ nav.navbar-floating {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Sombra un poco más pronunciada */
   padding: 0.5rem 1rem; /* Padding vertical reducido, horizontal ajustado */
   display: flex;
-  justify-content: space-between; /* Espacio entre logo y otros elementos (si los hubiera) */
+  justify-content: flex-start; /* Alinea el logo a la izquierda */
   align-items: center;
+  width: 100%; /* Ocupa todo el ancho */
 }
 
 .navbar-floating .logo-container {
   display: flex;
   align-items: center;
   cursor: pointer;
-  height: 100%; /* El logo contenedor ocupa toda la altura del nav */
+  height: 3rem; /* Altura fija del contenedor del logo */
 }
 
 .navbar-floating .logo {
-  height: 3rem; /* Tamaño del logo ajustado para ocupar el espacio vertical */
-  width: auto;  /* Mantiene la proporción del logo */
-  margin-right: 0.5rem; /* Espacio a la derecha del logo */
+  height: 2.5rem; /* Ajusta el tamaño del logo dentro del contenedor */
+  width: auto;
+  margin-right: 0.75rem; /* Espacio a la derecha del logo */
 }
 
 .navbar-floating .logo-text {
-  font-size: 1.5rem; /* Tamaño de la fuente del título */
+  font-size: 1.5rem;
   font-weight: bold;
   color: #indigo-700;
-  line-height: 3rem; /* Centra verticalmente el texto con el logo */
+  line-height: 2.5rem; /* Centra verticalmente el texto con el logo */
 }
