@@ -16,7 +16,7 @@ const TareaDetalle = () => {
 
   const fetchTarea = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/tareas/${id}/`, {
+      const res = await axios.get(`https://namitask.onrender.com/api/tareas/${id}/`, {
         headers: { Authorization: `Bearer ${authTokens.access}` },
       });
       setTarea(res.data);
@@ -28,7 +28,7 @@ const TareaDetalle = () => {
 
   const fetchHistorial = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/actividad/?tarea=${id}`, {
+      const res = await axios.get(`https://namitask.onrender.com/api/actividad/?tarea=${id}`, {
         headers: { Authorization: `Bearer ${authTokens.access}` },
       });
       setHistorial(res.data);
@@ -40,7 +40,7 @@ const TareaDetalle = () => {
   const toggleChecklistItem = async (itemId, completado) => {
     try {
       await axios.patch(
-        `http://localhost:8000/api/checklistitems/${itemId}/`,
+        `https://namitask.onrender.com/api/checklistitems/${itemId}/`,
         { completado: !completado },
         { headers: { Authorization: `Bearer ${authTokens.access}` } }
       );

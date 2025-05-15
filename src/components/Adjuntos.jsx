@@ -9,7 +9,7 @@ const Adjuntos = ({ tareaId }) => {
   const token = JSON.parse(localStorage.getItem('authTokens'))?.access;
 
   const fetchAdjuntos = async () => {
-    const res = await axios.get(`http://localhost:8000/api/adjuntos/?tarea=${tareaId}`, {
+    const res = await axios.get(`https://namitask.onrender.com/api/adjuntos//?tarea=${tareaId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -30,7 +30,7 @@ const Adjuntos = ({ tareaId }) => {
     formData.append('descripcion', descripcion);
     formData.append('tarea', tareaId);
 
-    await axios.post('http://localhost:8000/api/adjuntos/', formData, {
+    await axios.post('https://namitask.onrender.com/api/adjuntos/', formData, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
@@ -61,7 +61,7 @@ const Adjuntos = ({ tareaId }) => {
       <ul className="list-disc list-inside">
         {adjuntos.map((a) => (
           <li key={a.id}>
-            <a href={`http://localhost:8000${a.archivo}`} target="_blank" rel="noopener noreferrer">
+            <a href={`https://namitask.onrender.com${a.archivo}`} target="_blank" rel="noopener noreferrer">
               {a.descripcion || 'Archivo sin descripción'}
             </a>
           </li>

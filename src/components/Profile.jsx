@@ -94,7 +94,7 @@ const Profile = () => {
         {fotoPreview && (
           <div className="text-center mb-3">
             <img
-              src={fotoPreview.startsWith("http") ? fotoPreview : `http://localhost:8000${fotoPreview}`}
+              src={fotoPreview.startsWith("http") ? fotoPreview : `https://namitask.onrender.com/api/profile/${fotoPreview}`}
               alt="Foto de perfil"
               className="rounded-circle object-fit-cover"
               style={{ width: "120px", height: "120px" }}

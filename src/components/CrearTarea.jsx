@@ -20,7 +20,7 @@ const CrearTarea = () => {
   useEffect(() => {
     const fetchEtiquetas = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/etiquetas/", {
+        const res = await axios.get("https://namitask.onrender.com/api/etiquetas/", {
           headers: {
             Authorization: `Bearer ${authTokens?.access}`,
           },
@@ -46,7 +46,7 @@ const CrearTarea = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/api/tareas/", form, {
+      await axios.post("https://namitask.onrender.com/api/tareas/", form, {
         headers: {
           Authorization: `Bearer ${authTokens?.access}`,
         },

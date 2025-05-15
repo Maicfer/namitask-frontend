@@ -18,7 +18,7 @@ const TableroKanban = () => {
   useEffect(() => {
     const fetchTareas = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/tareas/', {
+        const res = await axios.get('https://namitask.onrender.com/api/tareas/', {
           headers: {
             Authorization: `Bearer ${authTokens.access}`,
           },

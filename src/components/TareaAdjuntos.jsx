@@ -11,7 +11,7 @@ const TareaAdjuntos = ({ tareaId }) => {
   // Cargar adjuntos de la tarea
   const fetchAdjuntos = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/adjuntos/?tarea=${tareaId}`, {
+      const res = await axios.get(`https://namitask.onrender.com/api/adjuntos/?tarea=${tareaId}`, {
         headers: {
           Authorization: `Bearer ${authTokens.access}`,
         },
@@ -38,7 +38,7 @@ const TareaAdjuntos = ({ tareaId }) => {
     formData.append("tarea", tareaId);
 
     try {
-      await axios.post("http://localhost:8000/api/adjuntos/", formData, {
+      await axios.post("https://namitask.onrender.com/api/adjuntos/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${authTokens.access}`,
@@ -55,7 +55,7 @@ const TareaAdjuntos = ({ tareaId }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/adjuntos/${id}/`, {
+      await axios.delete(`https://namitask.onrender.com/api/adjuntos/${id}/`, {
         headers: {
           Authorization: `Bearer ${authTokens.access}`,
         },
@@ -87,7 +87,7 @@ const TareaAdjuntos = ({ tareaId }) => {
         {adjuntos.map((item) => (
           <li key={item.id} className="border p-2 rounded flex justify-between items-center">
             <a
-              href={`http://localhost:8000${item.archivo}`}
+              href={`https://namitask.onrender.com${item.archivo}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline"

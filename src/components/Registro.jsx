@@ -53,7 +53,7 @@ const Registro = () => {
 
       console.log('Payload enviado:', payload);
 
-      await axios.post('http://localhost:8000/api/register/', payload);
+      await axios.post('https://namitask.onrender.com/api/register/', payload);
       alert('Registro exitoso');
       navigate('/login');
     } catch (error) {

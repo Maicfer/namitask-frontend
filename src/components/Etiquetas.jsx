@@ -10,7 +10,7 @@ const Etiquetas = () => {
 
   const fetchEtiquetas = async () => {
     try {
-      const res = await axios.get('http://localhost:8000/api/etiquetas/', {
+      const res = await axios.get('https://namitask.onrender.com/api/etiquetas/', {
         headers: { Authorization: `Bearer ${authTokens.access}` },
       });
       setEtiquetas(res.data);
@@ -23,7 +23,7 @@ const Etiquetas = () => {
     e.preventDefault();
     try {
       await axios.post(
-        'http://localhost:8000/api/etiquetas/',
+        'https://namitask.onrender.com/api/etiquetas/',
         { nombre, color },
         { headers: { Authorization: `Bearer ${authTokens.access}` } }
       );
@@ -37,7 +37,7 @@ const Etiquetas = () => {
 
   const eliminarEtiqueta = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/etiquetas/${id}/`, {
+      await axios.delete(`https://namitask.onrender.com/api/etiquetas/${id}/`, {
         headers: { Authorization: `Bearer ${authTokens.access}` },
       });
       fetchEtiquetas();

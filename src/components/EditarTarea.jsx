@@ -14,7 +14,7 @@ const EditarTarea = () => {
   useEffect(() => {
     const fetchTarea = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/tareas/${id}/`, {
+        const response = await axios.get(`https://namitask.onrender.com/api/tareas/${id}/`, {
           headers: { Authorization: `Bearer ${authTokens.access}` },
         });
         setTarea(response.data);
@@ -45,7 +45,7 @@ const EditarTarea = () => {
         etiquetas_ids: tarea.etiquetas?.map(et => et.id) || []
       };
 
-      await axios.put(`http://localhost:8000/api/tareas/${id}/`, payload, {
+      await axios.put(`https://namitask.onrender.com/api/tareas/${id}/`, payload, {
         headers: {
           Authorization: `Bearer ${authTokens.access}`,
           "Content-Type": "application/json",
