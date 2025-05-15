@@ -8,9 +8,9 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen h-full pt-16 p-8"> {/* Eliminamos las clases de fondo aquí */}
+    <div className="min-h-screen h-full pt-16 p-8">
       <div className="max-w-xl mx-auto bg-white rounded-xl p-6 shadow-lg text-center space-y-4">
-        {/* Los botones vuelven aquí */}
+        {/* Aquí deberían estar los botones */}
         <div className="flex justify-center gap-4 mt-4 flex-wrap">
           <button
             onClick={() => navigate("/profile")}
