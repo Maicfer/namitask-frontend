@@ -9,8 +9,9 @@ body {
 /* Botones globales */
 .button-primary {
   @apply px-4 py-2 border border-indigo-700 text-indigo-700 rounded hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 transition;
-  margin-right: 0.5rem; /* Espacio entre botones si los hay */
+  margin-right: 0.5rem;
 }
+
 .button-secondary {
   @apply px-4 py-2 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-400 transition;
 }
@@ -18,7 +19,9 @@ body {
 /* Estilo para el fondo del dashboard */
 .bg-dashboard-pattern {
   background-image: url('https://www.wimi-teamwork.com/static/medias/logiciels-collaboration-1280x640-1.png');
-  /* Asegúrate de que la URL sea correcta */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* Separadores en formularios */
@@ -32,11 +35,38 @@ form > label {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-body {
-  background-color: #f8fafc;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url('https://www.wimi-teamwork.com/static/medias/logiciels-collaboration-1280x640-1.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+
+/* Estilos para el Navbar (Modificado) */
+nav.navbar-floating {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-50;
+  background-color: rgba(255, 255, 255, 0.95); /* Más opaco para mejor contraste */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Sombra un poco más pronunciada */
+  padding: 0.5rem 1rem; /* Padding vertical reducido, horizontal ajustado */
+  display: flex;
+  justify-content: space-between; /* Espacio entre logo y otros elementos (si los hubiera) */
+  align-items: center;
+}
+
+.navbar-floating .logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 100%; /* El logo contenedor ocupa toda la altura del nav */
+}
+
+.navbar-floating .logo {
+  height: 3rem; /* Tamaño del logo ajustado para ocupar el espacio vertical */
+  width: auto;  /* Mantiene la proporción del logo */
+  margin-right: 0.5rem; /* Espacio a la derecha del logo */
+}
+
+.navbar-floating .logo-text {
+  font-size: 1.5rem; /* Tamaño de la fuente del título */
+  font-weight: bold;
+  color: #indigo-700;
+  line-height: 3rem; /* Centra verticalmente el texto con el logo */
 }
