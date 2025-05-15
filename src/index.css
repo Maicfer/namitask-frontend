@@ -139,3 +139,7 @@ nav.navbar-floating {
   font-size: 0.9rem;
   color: #777;
 }
+.dashboard-buttons {
+  min-height: 5rem; /* Asegura una altura mínima para el contenedor de los botones */
+  align-items: center; /* Centra los botones verticalmente dentro de su contenedor */
+}
