@@ -11,7 +11,7 @@ const Navbar = () => {
         onClick={() => navigate("/dashboard")}
       >
         <img
-          src="/logo.png" // Reemplaza con la ruta correcta de tu logo
+          src="/logo-temporal.png" // Reemplaza con la ruta correcta de tu logo
           alt="Logo"
           className="h-8 w-8 mr-2"
         />
