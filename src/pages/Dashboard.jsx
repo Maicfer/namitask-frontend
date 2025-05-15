@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import "../../index.css"; // Importa los estilos generales para el fondo
+import "../../index.css"; // Importa los estilos generales
 
 const Dashboard = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -15,16 +15,19 @@ const Dashboard = () => {
         </h1>
         <p className="text-gray-600">Correo: {user?.email}</p>
 
-        <div className="mt-4">
+        <div className="flex justify-center gap-4 mt-4 flex-wrap">
           <button
             onClick={() => navigate("/profile")}
             className="button-primary"
           >
             Mi Perfil
           </button>
-        </div>
-
-        <div className="mt-6">
+          <button
+            onClick={() => navigate("/tablero")}
+            className="button-primary"
+          >
+            Ir al Tablero
+          </button>
           <button
             onClick={logoutUser}
             className="button-secondary"
