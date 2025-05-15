@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; // Importa useLocation
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = useLocation(); // Obtén la ubicación actual
   const { user } = useContext(AuthContext);
 
+  // No mostrar la información del usuario en la página de inicio de sesión ("/")
   const shouldShowUserInfo = user && location.pathname !== "/login";
 
   return (
