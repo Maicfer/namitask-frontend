@@ -6,12 +6,19 @@ import "../index.css";
 const Dashboard = () => {
   const { logoutUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="min-h-screen h-full pt-16 p-8">
       <div className="max-w-xl mx-auto bg-white rounded-xl p-6 shadow-lg text-center space-y-4">
-        {/* Eliminamos el bloque de bienvenida duplicado */}
-        <div className="flex justify-center gap-4 mt-8 flex-wrap">
+        <div className="text-center">
+          <h1 className="text-xl font-semibold text-gray-700">
+            Panel de Control
+          </h1>
+          <p className="text-sm text-gray-500">Navega por tu gestor</p>
+        </div>
+        {/* Contenedor de botones */}
+        <div className="flex justify-center gap-4 mt-4 flex-wrap">
           <button
             onClick={() => navigate("/profile")}
             className="button-primary"
