@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Importamos Link
 
 const estados = ['pendiente', 'en_progreso', 'completada'];
 const etiquetasEstados = {
@@ -33,6 +33,19 @@ const TableroKanban = () => {
 
   return (
     <div className="p-6 min-h-screen bg-gray-100">
+      {/* Menú del Tablero */}
+      <nav className="bg-white rounded-lg shadow p-4 mb-6 flex justify-start gap-4 border border-gray-200">
+        <Link to="/dashboard" className="button-primary">
+          Inicio
+        </Link>
+        <Link to="/crear-tarea" className="button-primary">
+          Crear Tarea
+        </Link>
+        <Link to="/etiquetas" className="button-primary">
+          Etiquetas
+        </Link>
+      </nav>
+
       <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">Tablero de Tareas</h2>
       <div className="flex justify-center gap-4 overflow-auto">
         {estados.map((estado) => (
@@ -80,4 +93,3 @@ const TableroKanban = () => {
 };
 
 export default TableroKanban;
-
