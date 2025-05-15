@@ -15,16 +15,19 @@ body {
 
 /* Botones globales (CSS Estándar) */
 .button-primary {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem; /* Aumenta el padding para un área de clic más grande */
   border: 1px solid #6366f1; /* Reemplaza con tu color indigo */
-  color: #6366f1;
+  color: white; /* Asegura que el texto sea visible */
+  background-color: #6366f1; /* Añade un color de fondo inicial */
   border-radius: 0.25rem;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-right: 0.5rem;
+  margin-right: 0.75rem; /* Aumenta el margen para más espacio entre botones */
+  cursor: pointer; /* Indica que es un elemento interactivo */
+  font-size: 1rem; /* Tamaño de fuente legible */
 }
 
 .button-primary:hover {
-  background-color: #6366f1;
+  background-color: #4f46e5; /* Un tono más oscuro al pasar el ratón */
   color: white;
 }
 
@@ -34,15 +37,18 @@ body {
 }
 
 .button-secondary {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem; /* Aumenta el padding para un área de clic más grande */
   border: 1px solid #dc2626; /* Reemplaza con tu color rojo */
-  color: #dc2626;
+  color: white; /* Asegura que el texto sea visible */
+  background-color: #dc2626; /* Añade un color de fondo inicial */
   border-radius: 0.25rem;
   transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer; /* Indica que es un elemento interactivo */
+  font-size: 1rem; /* Tamaño de fuente legible */
 }
 
 .button-secondary:hover {
-  background-color: #dc2626;
+  background-color: #b91c1c; /* Un tono más oscuro al pasar el ratón */
   color: white;
 }
 
@@ -51,24 +57,21 @@ body {
   outline-offset: 2px;
 }
 
-/* Estilo para el fondo del dashboard (ya no es necesario aquí, se aplica al body) */
-/*.bg-dashboard-pattern {
-  background-image: url('https://www.wimi-teamwork.com/static/medias/logiciels-collaboration-1280x640-1.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}*/
-
 .max-w-xl.mx-auto.bg-white.rounded-xl.p-6.shadow-lg.text-center.space-y-4 {
   background-color: rgba(255, 255, 255, 0.9); /* Reduce ligeramente la transparencia si es necesario */
+  margin-top: 2rem; /* Añade un margen superior al contenedor blanco si está muy pegado al Navbar */
+}
+
+.text-center {
+  margin-bottom: 2rem; /* Añade un margen inferior para separar visualmente los botones */
 }
 
 .text-center > h1 {
-  margin-bottom: 0.25rem; /* Agrega un poco de espacio entre el correo y el nombre */
+  margin-bottom: 0.25rem;
 }
 
 .text-center > p {
-  color: rgba(51, 51, 51, 0.8); /* Hace el correo un poco menos transparente */
+  color: rgba(51, 51, 51, 0.8);
 }
 
 /* Separadores en formularios */
@@ -135,20 +138,4 @@ nav.navbar-floating {
 .navbar-floating .email-text {
   font-size: 0.9rem;
   color: #777;
-}
-.max-w-xl.mx-auto.bg-white.rounded-xl.p-6.shadow-lg.text-center.space-y-4 {
-  background-color: rgba(255, 255, 255, 0.9); /* Reduce ligeramente la transparencia si es necesario */
-  margin-top: 2rem; /* Añade un margen superior al contenedor blanco si está muy pegado al Navbar */
-}
-
-.text-center {
-  margin-bottom: 2rem; /* Añade un margen inferior para separar visualmente los botones */
-}
-
-.text-center > h1 {
-  margin-bottom: 0.25rem;
-}
-
-.text-center > p {
-  color: rgba(51, 51, 51, 0.8);
 }
