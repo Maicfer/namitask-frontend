@@ -4,8 +4,13 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f9fb;
+  background-color: #f7f9fb; /* Un color de fondo por si la imagen no carga */
   color: #333;
+  background-image: url('https://www.wimi-teamwork.com/static/medias/logiciels-collaboration-1280x640-1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh; /* Asegura que el body ocupe al menos la altura de la ventana */
 }
 
 /* Botones globales (CSS Estándar) */
@@ -46,13 +51,13 @@ body {
   outline-offset: 2px;
 }
 
-/* Estilo para el fondo del dashboard */
-.bg-dashboard-pattern {
+/* Estilo para el fondo del dashboard (ya no es necesario aquí, se aplica al body) */
+/*.bg-dashboard-pattern {
   background-image: url('https://www.wimi-teamwork.com/static/medias/logiciels-collaboration-1280x640-1.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
+}*/
 
 .max-w-xl.mx-auto.bg-white.rounded-xl.p-6.shadow-lg.text-center.space-y-4 {
   background-color: rgba(255, 255, 255, 0.9); /* Reduce ligeramente la transparencia si es necesario */
@@ -89,7 +94,7 @@ nav.navbar-floating {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Sombra suave */
   padding: 0.5rem 1rem;
   display: flex;
-  justify-content: flex-start; /* Alinea el logo a la izquierda */
+  justify-content: space-between; /* Espacio entre logo y la info del usuario */
   align-items: center;
   width: 100%;
 }
@@ -112,4 +117,22 @@ nav.navbar-floating {
   font-weight: bold;
   color: #0d6efd; /* Color primario de Bootstrap (puedes cambiarlo) */
   line-height: 2.5rem; /* Centra verticalmente el texto */
+}
+
+.navbar-floating .user-info {
+  display: flex;
+  flex-direction: column; /* Coloca el nombre y el correo verticalmente */
+  align-items: flex-end; /* Alinea el texto a la derecha */
+}
+
+.navbar-floating .welcome-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.1rem;
+}
+
+.navbar-floating .email-text {
+  font-size: 0.9rem;
+  color: #777;
 }
