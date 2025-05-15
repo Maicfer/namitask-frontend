@@ -10,8 +10,14 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen h-full pt-16 p-8">
       <div className="max-w-xl mx-auto bg-white rounded-xl p-6 shadow-lg text-center space-y-4">
-        {/* Aquí deberían estar los botones */}
-        <div className="flex justify-center gap-4 mt-4 flex-wrap">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-indigo-700">
+            Bienvenido, {user?.nombre_completo || "Usuario"}
+          </h1>
+          <p className="text-gray-600">{user?.email}</p>
+        </div>
+        {/* Contenedor de botones */}
+        <div className="flex justify-center gap-4 mt-8 flex-wrap"> {/* Aumentamos el margen superior */}
           <button
             onClick={() => navigate("/profile")}
             className="button-primary"
