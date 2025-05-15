@@ -22,7 +22,7 @@ const CrearTarea = () => {
       try {
         const res = await axios.get("https://namitask.onrender.com/api/etiquetas/", {
           headers: {
-            Authorization: Bearer ${authTokens?.access},
+            Authorization: `Bearer ${authTokens?.access}`,
           },
         });
         setEtiquetas(res.data);
