@@ -8,7 +8,7 @@ const Navbar = () => {
   const { user } = useContext(AuthContext);
 
   // No mostrar la información del usuario en la página de inicio de sesión ("/")
-  const shouldShowUserInfo = user && location.pathname !== "/";
+  const shouldShowUserInfo = user && location.pathname !== "/login";
 
   return (
     <nav className="navbar-floating">
