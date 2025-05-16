@@ -180,3 +180,7 @@ nav.navbar-floating {
   width: 100%;
   padding: 1rem;
 }
+
+.dashboard-container {
+  margin-top: 4rem; /* Ajusta este valor según necesites más o menos espacio */
+}
