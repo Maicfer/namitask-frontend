@@ -28,7 +28,7 @@ const TareaDetalle = () => {
         try {
             const res = await api.get(`/tareas/${id}/`);
             setTarea(res.data);
-            setChecklist(res.data.checklist || []); // Inicializa con un array vacío si no hay checklist
+            setChecklist(res.data.checklist);
         } catch (err) {
             setError("No se pudo cargar la tarea.");
         }
@@ -56,27 +56,34 @@ const TareaDetalle = () => {
         setNewChecklistItem(e.target.value);
     };
 
-    const handleAddChecklistItem = (e) => {
+    const handleAddChecklistItem = async (e) => {
         e.preventDefault();
         if (newChecklistItem.trim()) {
-            const newItem = {
-                id: Date.now(), // Generamos un ID único en el frontend
-                tarea: id,     // Mantenemos la referencia a la tarea (solo para el estado local)
-                nombre: newChecklistItem,
-                completado: false,
-                fecha_creacion: new Date().toISOString() // Simulamos una fecha de creación
-            };
-            setChecklist(prevChecklist => [...prevChecklist, newItem]);
-            setNewChecklistItem("");
+            try {
+                const res = await api.post("/checklist/", { tarea: id, nombre: newChecklistItem });
+                setNewChecklistItem("");
+                // Asegúrate de que la respuesta contiene el item creado con un ID
+                if (res.data && res.data.id) {
+                    setChecklist(prevChecklist => [...prevChecklist, res.data]);
+                } else {
+                    // Si la respuesta no tiene el formato esperado, recarga la tarea para obtener la lista actualizada
+                    fetchTarea();
+                }
+            } catch (err) {
+                console.error("Error al añadir item al checklist:", err);
+                alert("Hubo un problema al añadir el item al checklist.");
+            }
         }
     };
 
-    const toggleChecklistItem = (itemId) => {
-        setChecklist(prevChecklist =>
-            prevChecklist.map(item =>
-                item.id === itemId ? { ...item, completado: !item.completado } : item
-            )
-        );
+    const toggleChecklistItem = async (itemId, completado) => {
+        try {
+            await api.post(`/tareas/${id}/completar_checklist_item/`, { item_id: itemId, completado: !completado });
+            fetchTarea(); // Recargar la tarea para obtener la checklist y el historial actualizados
+        } catch (err) {
+            console.error("Error actualizando checklist", err);
+            alert("Hubo un problema al actualizar el item del checklist.");
+        }
     };
 
     const handleAdjuntoUpload = async (e) => {
@@ -166,7 +173,7 @@ const TareaDetalle = () => {
                                 <input
                                     type="checkbox"
                                     checked={item.completado}
-                                    onChange={() => toggleChecklistItem(item.id)}
+                                    onChange={() => toggleChecklistItem(item.id, item.completado)}
                                 />
                                 <span className={item.completado ? "line-through text-gray-400" : ""}>
                                     {item.nombre}
