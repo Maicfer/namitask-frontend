@@ -36,7 +36,7 @@ const TareaDetalle = () => {
 
     const fetchHistorial = async () => {
         try {
-            const res = await api.get(`/actividad/?tarea=${id}`);
+            const res = await api.get(`/actividades/?tarea=${id}`);
             setHistorial(res.data);
         } catch (err) {
             console.error("Error al cargar historial:", err);
