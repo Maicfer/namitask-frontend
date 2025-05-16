@@ -26,7 +26,7 @@ const CambiarPassword = () => {
 
     try {
       const response = await axios.put(
-        "https://namitask.onrender.com/api/cambiar-password/",
+        "https://namitask.onrender.com/api/profile/cambiar-clave/",
         form,
         {
           headers: {
