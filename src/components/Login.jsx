@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Container, Card, Button, Spinner } from 'react-bootstrap';
 import { AuthContext } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Importamos Link
 import api from '../services/api';
 
 const Login = () => {
@@ -65,6 +65,11 @@ const Login = () => {
             </Button>
           </Form>
         </Formik>
+
+        {/* Enlace para ir a la página de registro */}
+        <div className="mt-3 text-center">
+          ¿No tienes una cuenta? <Link to="/register">Regístrate aquí</Link>
+        </div>
       </Card>
     </Container>
   );
