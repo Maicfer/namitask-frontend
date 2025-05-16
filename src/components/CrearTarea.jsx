@@ -132,20 +132,18 @@ const CrearTarea = () => {
             </select>
           </div>
 
-          <button
-            type="submit"
-            className="w-full button-primary" // Usando el estilo del botón primario
-          >
-            Crear tarea
-          </button>
+          <div className="flex justify-center gap-4 mt-6">
+            <button
+              type="submit"
+              className="button-primary" // Usando el estilo del botón primario
+            >
+              Crear tarea
+            </button>
+            <Link to="/tablero" className="button-secondary"> {/* Usando el estilo del botón secundario */}
+              Ir al Tablero
+            </Link>
+          </div>
         </form>
-
-        {/* Botón "Ir al Tablero" */}
-        <div className="mt-4 text-center">
-          <Link to="/tablero" className="button-secondary"> {/* Usando el estilo del botón secundario */}
-            Ir al Tablero
-          </Link>
-        </div>
       </div>
     </div>
   );
