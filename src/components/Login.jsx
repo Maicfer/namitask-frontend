@@ -68,7 +68,7 @@ const Login = () => {
 
         {/* Enlace para ir a la página de registro */}
         <div className="mt-3 text-center">
-          ¿No tienes una cuenta? <Link to="/register">Regístrate aquí</Link>
+          ¿No tienes una cuenta? <Link to="/api/register">Regístrate aquí</Link>
         </div>
       </Card>
     </Container>
