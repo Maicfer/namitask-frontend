@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate, Link } from "react-router-dom"; // Importamos Link
-import api from "../services/api"; // ✅ Usa axios con baseURL
+import { useNavigate, Link } from "react-router-dom";
+import api from "../services/api";
 
 const Profile = () => {
   const { authTokens, user } = useContext(AuthContext);
@@ -68,12 +68,13 @@ const Profile = () => {
 
     try {
       setLoading(true);
-      await api.put("/profile/", formData, {
+      const response = await api.put("/api/profile/", formData, { // Corregido la URL a "/api/profile/"
         headers: {
           Authorization: `Bearer ${authTokens.access}`,
           "Content-Type": "multipart/form-data",
         },
       });
+      console.log("Respuesta del servidor:", response); // Agregado para depuración
       alert("Perfil actualizado correctamente.");
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
@@ -167,7 +168,6 @@ const Profile = () => {
             <input type="file" className="form-control" onChange={handleFotoChange} />
           </div>
 
-          {/* Contenedor para los botones de acción */}
           <div className="d-grid gap-2 mt-4">
             <button type="submit" className="btn btn-success" disabled={loading}>
               {loading ? "Guardando..." : "Guardar cambios"}
