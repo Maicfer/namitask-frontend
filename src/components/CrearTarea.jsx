@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useNavigate, Link } from "react-router-dom";
+import "../index.css"; // Asegúrate de que esté importado
 
 const CrearTarea = () => {
   const { authTokens } = useContext(AuthContext);
@@ -73,7 +73,7 @@ const CrearTarea = () => {
               name="titulo"
               value={form.titulo}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded input-modern" // Clase para input
               required
             />
           </div>
@@ -84,7 +84,7 @@ const CrearTarea = () => {
               name="descripcion"
               value={form.descripcion}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded textarea-modern" // Clase para textarea
               rows="3"
             ></textarea>
           </div>
@@ -95,7 +95,7 @@ const CrearTarea = () => {
               name="prioridad"
               value={form.prioridad}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded select-modern" // Clase para select
             >
               <option value="baja">Baja</option>
               <option value="media">Media</option>
@@ -110,7 +110,7 @@ const CrearTarea = () => {
               name="fecha_limite"
               value={form.fecha_limite}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded input-modern" // Clase para input
             />
           </div>
 
@@ -121,7 +121,7 @@ const CrearTarea = () => {
               multiple
               value={form.etiquetas_ids}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded select-modern" // Clase para select
             >
               {etiquetas.map((etiqueta) => (
                 <option key={etiqueta.id} value={etiqueta.id}>
@@ -133,11 +133,18 @@ const CrearTarea = () => {
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
+            className="w-full button-primary" // Usamos la clase button-primary existente
           >
             Crear tarea
           </button>
         </form>
+
+        {/* Botón para volver al tablero */}
+        <div className="mt-4 text-center">
+          <Link to="/tablero" className="button-secondary"> {/* Usamos la clase button-secondary existente */}
+            Volver al Tablero
+          </Link>
+        </div>
       </div>
     </div>
   );
