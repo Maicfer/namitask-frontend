@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import "../index.css"; // Asegúrate de que esté importado
 
 const CrearTarea = () => {
   const { authTokens } = useContext(AuthContext);
@@ -66,36 +67,36 @@ const CrearTarea = () => {
           Crear nueva tarea
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block font-medium">Título</label>
+          <div className="mb-3">
+            <label className="block font-medium mb-1">Título</label>
             <input
               type="text"
               name="titulo"
               value={form.titulo}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded input-modern"
               required
             />
           </div>
 
-          <div>
-            <label className="block font-medium">Descripción</label>
+          <div className="mb-3">
+            <label className="block font-medium mb-1">Descripción</label>
             <textarea
               name="descripcion"
               value={form.descripcion}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded textarea-modern"
               rows="3"
             ></textarea>
           </div>
 
-          <div>
-            <label className="block font-medium">Prioridad</label>
+          <div className="mb-3">
+            <label className="block font-medium mb-1">Prioridad</label>
             <select
               name="prioridad"
               value={form.prioridad}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded select-modern"
             >
               <option value="baja">Baja</option>
               <option value="media">Media</option>
@@ -103,25 +104,25 @@ const CrearTarea = () => {
             </select>
           </div>
 
-          <div>
-            <label className="block font-medium">Fecha límite</label>
+          <div className="mb-3">
+            <label className="block font-medium mb-1">Fecha límite</label>
             <input
               type="date"
               name="fecha_limite"
               value={form.fecha_limite}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded input-modern"
             />
           </div>
 
-          <div>
-            <label className="block font-medium">Etiquetas</label>
+          <div className="mb-3">
+            <label className="block font-medium mb-1">Etiquetas</label>
             <select
               name="etiquetas_ids"
               multiple
               value={form.etiquetas_ids}
               onChange={handleChange}
-              className="w-full border p-2 rounded"
+              className="w-full border p-2 rounded select-modern"
             >
               {etiquetas.map((etiqueta) => (
                 <option key={etiqueta.id} value={etiqueta.id}>
@@ -133,11 +134,18 @@ const CrearTarea = () => {
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
+            className="w-full button-primary" // Usando el estilo del botón primario
           >
             Crear tarea
           </button>
         </form>
+
+        {/* Botón "Ir al Tablero" */}
+        <div className="mt-4 text-center">
+          <Link to="/tablero" className="button-secondary"> {/* Usando el estilo del botón secundario */}
+            Ir al Tablero
+          </Link>
+        </div>
       </div>
     </div>
   );

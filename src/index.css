@@ -6,195 +6,112 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f7f9fb; /* Un color de fondo por si la imagen no carga */
   color: #333;
-  background-image: url('https://www.wimi-teamwork.com/static/medias/logiciels-collaboration-1280x640-1.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh; /* Asegura que el body ocupe al menos la altura de la ventana */
 }
 
-/* Botones globales (CSS Estándar) */
+/* Botones globales (CSS Estándar) - Manteniendo tus estilos */
 .button-primary {
-  padding: 0.75rem 1.5rem; /* Aumenta el padding para un área de clic más grande */
-  border: 1px solid #6366f1; /* Reemplaza con tu color indigo */
-  color: white; /* Asegura que el texto sea visible */
-  background-color: #6366f1; /* Añade un color de fondo inicial */
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #6366f1;
+  color: white;
+  background-color: #6366f1;
   border-radius: 0.25rem;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-right: 0.75rem; /* Aumenta el margen para más espacio entre botones */
-  cursor: pointer; /* Indica que es un elemento interactivo */
-  font-size: 1rem; /* Tamaño de fuente legible */
+  margin-right: 0.75rem;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .button-primary:hover {
-  background-color: #4f46e5; /* Un tono más oscuro al pasar el ratón */
+  background-color: #4f46e5;
   color: white;
 }
 
 .button-primary:focus {
-  outline: 2px solid #a78bfa; /* Un tono más claro de tu indigo */
+  outline: 2px solid #a78bfa;
   outline-offset: 2px;
 }
 
 .button-secondary {
-  padding: 0.75rem 1.5rem; /* Aumenta el padding para un área de clic más grande */
-  border: 1px solid #dc2626; /* Reemplaza con tu color rojo */
-  color: white; /* Asegura que el texto sea visible */
-  background-color: #dc2626; /* Añade un color de fondo inicial */
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #dc2626;
+  color: white;
+  background-color: #dc2626;
   border-radius: 0.25rem;
   transition: background-color 0.3s ease, color 0.3s ease;
-  cursor: pointer; /* Indica que es un elemento interactivo */
-  font-size: 1rem; /* Tamaño de fuente legible */
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .button-secondary:hover {
-  background-color: #b91c1c; /* Un tono más oscuro al pasar el ratón */
+  background-color: #b91c1c;
   color: white;
 }
 
 .button-secondary:focus {
-  outline: 2px solid #fca5a5; /* Un tono más claro de tu rojo */
+  outline: 2px solid #fca5a5;
   outline-offset: 2px;
 }
 
-.max-w-xl.mx-auto.bg-white.rounded-xl.p-6.shadow-lg.text-center.space-y-4 {
-  background-color: rgba(255, 255, 255, 0.9); /* Reduce ligeramente la transparencia si es necesario */
-  margin-top: 2rem; /* Añade un margen superior al contenedor blanco si está muy pegado al Navbar */
+/* Estilos para el contenedor del formulario */
+.max-w-xl.mx-auto.bg-white.rounded-lg.shadow-md { /* Usando rounded-lg */
+  background-color: rgba(255, 255, 255, 0.9);
+  margin-top: 2rem;
+  padding: 2rem; /* Aumentando el padding para más espacio interior */
 }
 
-.text-center {
-  margin-bottom: 2rem; /* Añade un margen inferior para separar visualmente los botones */
+/* Estilos para el título */
+.text-center.text-indigo-700 {
+  margin-bottom: 1.5rem; /* Más espacio debajo del título */
 }
 
-.text-center > h1 {
-  margin-bottom: 0.25rem;
-}
-
-.text-center > p {
-  color: rgba(51, 51, 51, 0.8);
-}
-
-/* Separadores en formularios */
-form > label {
-  margin-top: 1rem;
+/* Estilos para las etiquetas de los campos */
+.block.font-medium.mb-1 {
   display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem; /* Espacio entre la etiqueta y el campo */
+  color: #374151; /* Un color de texto más legible */
 }
 
-/* Mejoras responsivas */
-.container {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-/* Estilos para el Navbar (Modificado - Sin Tailwind) */
-nav.navbar-floating {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50; /* Agrega la propiedad z-index directamente */
-  background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco con ligera transparencia */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Sombra suave */
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: space-between; /* Espacio entre logo y la info del usuario */
-  align-items: center;
+/* Estilos para los campos de entrada, textarea y select */
+.w-full.border.p-2.rounded.input-modern,
+.w-full.border.p-2.rounded.textarea-modern,
+.w-full.border.p-2.rounded.select-modern {
   width: 100%;
-}
-
-.navbar-floating .logo-container {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  height: 3rem; /* Altura fija del contenedor del logo */
-}
-
-.navbar-floating .logo {
-  height: 2.5rem; /* Tamaño del logo */
-  width: auto;
-  margin-right: 0.75rem;
-}
-
-.navbar-floating .logo-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #0d6efd; /* Color primario de Bootstrap (puedes cambiarlo) */
-  line-height: 2.5rem; /* Centra verticalmente el texto */
-}
-
-.navbar-floating .user-info {
-  display: flex;
-  flex-direction: column; /* Coloca el nombre y el correo verticalmente */
-  align-items: flex-end; /* Alinea el texto a la derecha */
-}
-
-.navbar-floating .welcome-text {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 0.1rem;
-}
-
-.navbar-floating .email-text {
-  font-size: 0.9rem;
-  color: #777;
-}
-
-.dashboard-buttons {
-  /* El posicionamiento absoluto lo sacará del flujo normal */
-  bottom: 2rem; /* Ajusta la distancia desde la parte inferior según sea necesario */
-  left: 50%; /* Centra horizontalmente */
-  transform: translateX(-50%); /* Ajusta para centrar perfectamente */
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%; /* O un ancho máximo si lo prefieres */
-  padding: 1rem;
-}
-
-.input-modern {
-  border: 1px solid #ccc;
-  padding: 0.7rem;
+  border: 1px solid #d1d5db; /* Un borde más suave */
+  padding: 0.75rem;
+  border-radius: 0.375rem; /* Un radio de borde un poco mayor */
   font-size: 1rem;
-  border-radius: 0.3rem;
-  transition: border-color 0.2s ease-in-out;
+  color: #374151;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
 }
 
-.input-modern:focus {
-  border-color: #6366f1; /* Color primario */
+.w-full.border.p-2.rounded.input-modern:focus,
+.w-full.border.p-2.rounded.textarea-modern:focus,
+.w-full.border.p-2.rounded.select-modern:focus {
   outline: none;
-  box-shadow: 0 0 0 0.15rem rgba(99, 102, 241, 0.25); /* Sombra suave al enfocar */
+  border-color: #6366f1; /* Color de foco primario */
+  box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25); /* Sombra de foco */
 }
 
-.textarea-modern {
-  border: 1px solid #ccc;
-  padding: 0.7rem;
-  font-size: 1rem;
-  border-radius: 0.3rem;
-  transition: border-color 0.2s ease-in-out;
-}
-
-.textarea-modern:focus {
-  border-color: #6366f1; /* Color primario */
-  outline: none;
-  box-shadow: 0 0 0 0.15rem rgba(99, 102, 241, 0.25); /* Sombra suave al enfocar */
-}
-
-.select-modern {
-  border: 1px solid #ccc;
-  padding: 0.7rem;
-  font-size: 1rem;
-  border-radius: 0.3rem;
-  transition: border-color 0.2s ease-in-out;
-  appearance: none; /* Oculta las flechas por defecto en algunos navegadores */
-  background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23333" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>'); /* Flecha personalizada */
+/* Estilos específicos para el select */
+.w-full.border.p-2.rounded.select-modern {
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23374151" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
   background-repeat: no-repeat;
-  background-position: right 0.7rem center;
-  background-size: 1rem;
+  background-position: right 0.75rem center;
+  background-size: 1.1rem;
 }
 
-.select-modern:focus {
-  border-color: #6366f1; /* Color primario */
-  outline: none;
-  box-shadow: 0 0 0 0.15rem rgba(99, 102, 241, 0.25); /* Sombra suave al enfocar */
+/* Estilos para el contenedor de los botones */
+.mt-4.text-center {
+  margin-top: 2rem; /* Más espacio antes de los botones */
+}
+
+/* Espacio entre los elementos del formulario */
+.space-y-4 > div {
+  margin-bottom: 1rem; /* Añadiendo margen inferior a cada grupo de formulario */
 }
