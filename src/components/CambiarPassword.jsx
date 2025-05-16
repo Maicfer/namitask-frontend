@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Importamos Link
 
 const CambiarPassword = () => {
   const { authTokens, logoutUser } = useContext(AuthContext);
@@ -75,12 +75,17 @@ const CambiarPassword = () => {
             className="form-control"
           />
 
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
-          >
-            Cambiar contraseña
-          </button>
+          <div className="flex justify-center gap-4 mt-4">
+            <button
+              type="submit"
+              className="button-primary" // Usando el estilo del botón primario
+            >
+              Cambiar contraseña
+            </button>
+            <Link to="/profile" className="button-secondary"> {/* Usando el estilo del botón secundario */}
+              Ir al perfil
+            </Link>
+          </div>
         </form>
       </div>
     </div>
@@ -88,4 +93,3 @@ const CambiarPassword = () => {
 };
 
 export default CambiarPassword;
-
