@@ -78,11 +78,25 @@ const TareaDetalle = () => {
 
     const toggleChecklistItem = async (itemId, completado) => {
         try {
+            // Optimistic Update: Actualizamos el estado local inmediatamente
+            setChecklist(prevChecklist =>
+                prevChecklist.map(item =>
+                    item.id === itemId ? { ...item, completado: !completado } : item
+                )
+            );
+
+            // Realizamos la petición al backend
             await api.post(`/tareas/${id}/completar_checklist_item/`, { item_id: itemId, completado: !completado });
-            fetchTarea(); // Recargar la tarea para obtener la checklist y el historial actualizados
+
+            // No necesitamos recargar la tarea completa, ya que hicimos una actualización optimista
+            // Sin embargo, recargamos el historial para asegurarnos de que la actividad se refleje
+            fetchHistorial();
+
         } catch (err) {
             console.error("Error actualizando checklist", err);
             alert("Hubo un problema al actualizar el item del checklist.");
+            // Revertir la actualización optimista en caso de error
+            fetchTarea();
         }
     };
 
