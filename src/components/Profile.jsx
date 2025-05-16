@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Importamos Link
 import api from "../services/api"; // ✅ Usa axios con baseURL
-
 
 const Profile = () => {
   const { authTokens, user } = useContext(AuthContext);
@@ -179,6 +178,13 @@ const Profile = () => {
             >
               Volver
             </button>
+          </div>
+
+          {/* Botón para cambiar la contraseña */}
+          <div className="mt-3 text-center">
+            <Link to="/cambiar-password" className="btn btn-info">
+              Cambiar contraseña
+            </Link>
           </div>
         </form>
       </div>
