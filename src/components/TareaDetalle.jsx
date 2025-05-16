@@ -62,7 +62,13 @@ const TareaDetalle = () => {
             try {
                 const res = await api.post("/checklist/", { tarea: id, nombre: newChecklistItem });
                 setNewChecklistItem("");
-                setChecklist(prevChecklist => [...prevChecklist, res.data]);
+                // Asegúrate de que la respuesta contiene el item creado con un ID
+                if (res.data && res.data.id) {
+                    setChecklist(prevChecklist => [...prevChecklist, res.data]);
+                } else {
+                    // Si la respuesta no tiene el formato esperado, recarga la tarea para obtener la lista actualizada
+                    fetchTarea();
+                }
             } catch (err) {
                 console.error("Error al añadir item al checklist:", err);
                 alert("Hubo un problema al añadir el item al checklist.");
@@ -73,7 +79,7 @@ const TareaDetalle = () => {
     const toggleChecklistItem = async (itemId, completado) => {
         try {
             await api.post(`/tareas/${id}/completar_checklist_item/`, { item_id: itemId, completado: !completado });
-            fetchTarea(); // Recargar la tarea para obtener la checklist actualizada y el historial actualizado (por la señal en el backend)
+            fetchTarea(); // Recargar la tarea para obtener la checklist y el historial actualizados
         } catch (err) {
             console.error("Error actualizando checklist", err);
             alert("Hubo un problema al actualizar el item del checklist.");
