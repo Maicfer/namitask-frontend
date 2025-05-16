@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom"; // Importamos Link
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
@@ -11,16 +11,22 @@ const TareaDetalle = () => {
   const [tarea, setTarea] = useState(null);
   const [historial, setHistorial] = useState([]);
   const [checklist, setChecklist] = useState([]);
+  const [newChecklistItem, setNewChecklistItem] = useState("");
   const [error, setError] = useState("");
   const [adjuntos, setAdjuntos] = useState([]);
   const [archivo, setArchivo] = useState(null);
   const [uploadError, setUploadError] = useState("");
 
+  const api = axios.create({
+    baseURL: "https://namitask.onrender.com/api/",
+    headers: {
+      Authorization: `Bearer ${authTokens?.access}`,
+    },
+  });
+
   const fetchTarea = async () => {
     try {
-      const res = await axios.get(`https://namitask.onrender.com/api/tareas/${id}/`, {
-        headers: { Authorization: `Bearer ${authTokens.access}` },
-      });
+      const res = await api.get(`/tareas/${id}/`);
       setTarea(res.data);
       setChecklist(res.data.checklist);
     } catch (err) {
@@ -30,9 +36,7 @@ const TareaDetalle = () => {
 
   const fetchHistorial = async () => {
     try {
-      const res = await axios.get(`https://namitask.onrender.com/api/actividad/?tarea=${id}`, {
-        headers: { Authorization: `Bearer ${authTokens.access}` },
-      });
+      const res = await api.get(`/actividad/?tarea=${id}`);
       setHistorial(res.data);
     } catch (err) {
       console.error("Error al cargar historial:", err);
@@ -41,27 +45,42 @@ const TareaDetalle = () => {
 
   const fetchAdjuntos = async () => {
     try {
-      const res = await axios.get(`https://namitask.onrender.com/api/adjuntos/?tarea=${id}`, {
-        headers: {
-          Authorization: `Bearer ${authTokens.access}`,
-        },
-      });
+      const res = await api.get(`/adjuntos/?tarea=${id}`);
       setAdjuntos(res.data);
     } catch (err) {
       console.error("Error al cargar adjuntos:", err);
     }
   };
 
+  const handleNewChecklistItemChange = (e) => {
+    setNewChecklistItem(e.target.value);
+  };
+
+  const handleAddChecklistItem = async (e) => {
+    e.preventDefault();
+    if (newChecklistItem.trim()) {
+      try {
+        await api.post("/checklist/", { tarea: id, nombre: newChecklistItem });
+        setNewChecklistItem("");
+        fetchTarea(); // Recargar la tarea para obtener la checklist actualizada
+      } catch (err) {
+        console.error("Error al añadir item al checklist:", err);
+        alert("Hubo un problema al añadir el item al checklist.");
+      }
+    }
+  };
+
   const toggleChecklistItem = async (itemId, completado) => {
     try {
-      await axios.patch(
-        `https://namitask.onrender.com/api/checklistitems/${itemId}/`,
-        { completado: !completado },
-        { headers: { Authorization: `Bearer ${authTokens.access}` } }
-      );
-      fetchTarea(); // Recargar checklist
+      await api.patch(`/checklist/${itemId}/`, { completado: !completado });
+      fetchTarea(); // Recargar la tarea para obtener la checklist actualizada
+      // Registrar actividad del checklist
+      const descripcion = completado ? "Se reabrió un item del checklist" : "Se completó un item del checklist";
+      api.post("/actividades/", { tarea: id, descripcion });
+      fetchHistorial(); // Recargar el historial para mostrar la nueva actividad
     } catch (err) {
       console.error("Error actualizando checklist", err);
+      alert("Hubo un problema al actualizar el item del checklist.");
     }
   };
 
@@ -77,15 +96,16 @@ const TareaDetalle = () => {
     formData.append("tarea", id);
 
     try {
-      await axios.post("https://namitask.onrender.com/api/adjuntos/", formData, {
+      await api.post("/adjuntos/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${authTokens.access}`,
         },
       });
       setArchivo(null);
       setUploadError("");
       fetchAdjuntos();
+      api.post("/actividades/", { tarea: id, descripcion: `Se subió un nuevo adjunto: ${archivo.name}` });
+      fetchHistorial();
     } catch (err) {
       console.error("Error al subir adjunto:", err);
       setUploadError("Error al subir el archivo.");
@@ -94,15 +114,21 @@ const TareaDetalle = () => {
 
   const handleAdjuntoDelete = async (adjuntoId) => {
     try {
-      await axios.delete(`https://namitask.onrender.com/api/adjuntos/${adjuntoId}/`, {
-        headers: {
-          Authorization: `Bearer ${authTokens.access}`,
-        },
-      });
+      const adjuntoEliminado = adjuntos.find(adjunto => adjunto.id === adjuntoId);
+      await api.delete(`/adjuntos/${adjuntoId}/`);
       fetchAdjuntos();
+      if (adjuntoEliminado) {
+        api.post("/actividades/", { tarea: id, descripcion: `Se eliminó el adjunto: ${adjuntoEliminado.archivo.split('/').pop()}` });
+        fetchHistorial();
+      }
     } catch (err) {
       console.error("Error al eliminar adjunto:", err);
+      alert("Hubo un problema al eliminar el archivo adjunto.");
     }
+  };
+
+  const handleArchivoChange = (e) => {
+    setArchivo(e.target.files[0]);
   };
 
   useEffect(() => {
@@ -129,6 +155,18 @@ const TareaDetalle = () => {
       {/* Checklist */}
       <div className="mt-4">
         <h3 className="text-lg font-semibold mb-2">Checklist</h3>
+        <form onSubmit={handleAddChecklistItem} className="mb-3 flex items-center gap-2">
+          <input
+            type="text"
+            className="form-control form-control-sm"
+            value={newChecklistItem}
+            onChange={handleNewChecklistItemChange}
+            placeholder="Nueva subtarea"
+          />
+          <button type="submit" className="button-primary btn-sm">
+            Añadir
+          </button>
+        </form>
         {!checklist || checklist.length === 0 ? (
           <p className="text-gray-500">Sin subtareas.</p>
         ) : (
@@ -155,7 +193,7 @@ const TareaDetalle = () => {
         <form onSubmit={handleAdjuntoUpload} className="mb-3 flex items-center gap-2">
           <input
             type="file"
-            onChange={(e) => setArchivo(e.target.files[0])}
+            onChange={handleArchivoChange}
             className="form-control form-control-sm"
           />
           <button type="submit" className="button-primary btn-sm">
