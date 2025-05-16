@@ -167,7 +167,8 @@ const Profile = () => {
             <input type="file" className="form-control" onChange={handleFotoChange} />
           </div>
 
-          <div className="d-flex justify-content-between mt-4">
+          {/* Contenedor para los botones de acción */}
+          <div className="d-grid gap-2 mt-4">
             <button type="submit" className="btn btn-success" disabled={loading}>
               {loading ? "Guardando..." : "Guardar cambios"}
             </button>
@@ -178,10 +179,6 @@ const Profile = () => {
             >
               Volver
             </button>
-          </div>
-
-          {/* Botón para cambiar la contraseña */}
-          <div className="mt-3 text-center">
             <Link to="/cambiar-password" className="btn btn-info">
               Cambiar contraseña
             </Link>
