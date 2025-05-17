@@ -74,16 +74,12 @@ const Etiquetas = () => {
         </button>
       </form>
 
-      <ul className="space-y-2">
+      {/* 📌 Ajustes en la estructura de etiquetas */}
+      <ul className="etiqueta-container">
         {etiquetas.map((etiqueta) => (
-          <li key={etiqueta.id} className="flex justify-between items-center border p-2 rounded">
-            <span className="font-semibold" style={{ color: etiqueta.color }}>{etiqueta.nombre}</span>
-            <button
-              onClick={() => eliminarEtiqueta(etiqueta.id)}
-              className="text-red-600 hover:underline text-sm"
-            >
-              Eliminar
-            </button>
+          <li key={etiqueta.id} className="etiqueta" style={{ backgroundColor: etiqueta.color }}>
+            {etiqueta.nombre}
+            <button onClick={() => eliminarEtiqueta(etiqueta.id)}>✖</button>
           </li>
         ))}
       </ul>
