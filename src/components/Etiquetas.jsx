@@ -56,9 +56,9 @@ const Etiquetas = () => {
 
       {/* 📌 Botón de acceso al tablero */}
       <div className="flex justify-end mb-4">
-        <a href="/tablero" className="button-primary">
-          Ir al Tablero
-        </a>
+ <         Link to="/tablero" className="button-secondary"> {/* Usando el estilo del botón secundario */}
+              Ir al Tablero
+            </Link>
       </div>
 
       <form onSubmit={crearEtiqueta} className="space-y-2 mb-6">
