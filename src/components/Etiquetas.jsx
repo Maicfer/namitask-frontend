@@ -77,9 +77,9 @@ const Etiquetas = () => {
       {/* 📌 Ajustes en la estructura de etiquetas */}
       <ul className="etiqueta-container">
         {etiquetas.map((etiqueta) => (
-          <li key={etiqueta.id} className="etiqueta" style={{ backgroundColor: etiqueta.color }}>
-            {etiqueta.nombre}
-            <button onClick={() => eliminarEtiqueta(etiqueta.id)}>✖</button>
+          <li key={etiqueta.id} className="etiqueta" style={{ backgroundColor: etiqueta.color || '#6366f1' }}>
+            <span className="etiqueta-text">{etiqueta.nombre}</span>
+            <button className="etiqueta-delete" onClick={() => eliminarEtiqueta(etiqueta.id)}>✖</button>
           </li>
         ))}
       </ul>

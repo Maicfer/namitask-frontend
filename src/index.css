@@ -189,31 +189,44 @@ nav.navbar-floating {
 .etiqueta-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
+  padding: 10px;
 }
 
 .etiqueta {
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
   min-width: 100px;
+  max-width: 200px;
+  transition: transform 0.2s ease-in-out;
 }
 
-.etiqueta button {
+.etiqueta:hover {
+  transform: scale(1.05);
+}
+
+.etiqueta-text {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.etiqueta-delete {
   background: none;
   border: none;
   color: white;
   font-size: 12px;
   margin-left: 10px;
   cursor: pointer;
+  transition: color 0.2s ease-in-out;
 }
 
-.etiqueta button:hover {
+.etiqueta-delete:hover {
   color: #ffcccc;
 }
