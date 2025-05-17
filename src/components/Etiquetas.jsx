@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom"; // ✅ Importado correctamente
 import { AuthContext } from '../context/AuthContext';
 
 const Etiquetas = () => {
@@ -54,11 +55,11 @@ const Etiquetas = () => {
     <div className="max-w-md mx-auto bg-white p-6 rounded shadow mt-10">
       <h2 className="text-xl font-bold mb-4 text-indigo-600">Gestión de Etiquetas</h2>
 
-      {/* 📌 Botón de acceso al tablero */}
+      {/* 📌 Botón de acceso al tablero funcionando */}
       <div className="flex justify-end mb-4">
- <         Link to="/tablero" className="button-secondary"> {/* Usando el estilo del botón secundario */}
-              Ir al Tablero
-            </Link>
+        <Link to="/tablero" className="button-secondary"> {/* ✅ Ahora funciona como en CrearTarea */}
+          Ir al Tablero
+        </Link>
       </div>
 
       <form onSubmit={crearEtiqueta} className="space-y-2 mb-6">
