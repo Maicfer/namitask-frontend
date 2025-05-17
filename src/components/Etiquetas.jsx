@@ -55,9 +55,9 @@ const Etiquetas = () => {
     <div className="max-w-md mx-auto bg-white p-6 rounded shadow mt-10">
       <h2 className="text-xl font-bold mb-4 text-indigo-600">Gestión de Etiquetas</h2>
 
-      {/* 📌 Botón de acceso al tablero funcionando */}
+      {/* 📌 Botón de acceso al tablero */}
       <div className="flex justify-end mb-4">
-        <Link to="/tablero" className="button-secondary"> {/* ✅ Ahora funciona como en CrearTarea */}
+        <Link to="/tablero" className="button-secondary"> {/* ✅ Ahora funciona */}
           Ir al Tablero
         </Link>
       </div>
@@ -82,7 +82,6 @@ const Etiquetas = () => {
         </button>
       </form>
 
-      {/* 📌 Ajustes en la estructura de etiquetas */}
       <ul className="etiqueta-container">
         {etiquetas.map((etiqueta) => (
           <li key={etiqueta.id} className="etiqueta" style={{ backgroundColor: etiqueta.color || '#6366f1' }}>
