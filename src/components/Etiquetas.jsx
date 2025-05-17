@@ -11,7 +11,7 @@ const Etiquetas = () => {
   const fetchEtiquetas = async () => {
     try {
       const res = await axios.get('https://namitask.onrender.com/api/etiquetas/', {
-        headers: { Authorization: Bearer ${authTokens.access} },
+        headers: { Authorization: `Bearer ${authTokens.access}` }, // ✅ Corregido el uso de backticks
       });
       setEtiquetas(res.data);
     } catch (err) {
@@ -25,7 +25,7 @@ const Etiquetas = () => {
       await axios.post(
         'https://namitask.onrender.com/api/etiquetas/',
         { nombre, color },
-        { headers: { Authorization: Bearer ${authTokens.access} } }
+        { headers: { Authorization: `Bearer ${authTokens.access}` } } // ✅ Corregido
       );
       setNombre('');
       setColor('');
@@ -37,8 +37,8 @@ const Etiquetas = () => {
 
   const eliminarEtiqueta = async (id) => {
     try {
-      await axios.delete(https://namitask.onrender.com/api/etiquetas/${id}/, {
-        headers: { Authorization: Bearer ${authTokens.access} },
+      await axios.delete(`https://namitask.onrender.com/api/etiquetas/${id}/`, { // ✅ Corregido uso de comillas invertidas
+        headers: { Authorization: `Bearer ${authTokens.access}` }, // ✅ Corregido
       });
       fetchEtiquetas();
     } catch (err) {
@@ -74,16 +74,12 @@ const Etiquetas = () => {
         </button>
       </form>
 
-      <ul className="space-y-2">
+      {/* 📌 Ajustes en la estructura de etiquetas */}
+      <ul className="etiqueta-container">
         {etiquetas.map((etiqueta) => (
-          <li key={etiqueta.id} className="flex justify-between items-center border p-2 rounded">
-            <span className="font-semibold" style={{ color: etiqueta.color }}>{etiqueta.nombre}</span>
-            <button
-              onClick={() => eliminarEtiqueta(etiqueta.id)}
-              className="text-red-600 hover:underline text-sm"
-            >
-              Eliminar
-            </button>
+          <li key={etiqueta.id} className="etiqueta" style={{ backgroundColor: etiqueta.color || '#6366f1' }}>
+            <span className="etiqueta-text">{etiqueta.nombre}</span>
+            <button className="etiqueta-delete" onClick={() => eliminarEtiqueta(etiqueta.id)}>✖</button>
           </li>
         ))}
       </ul>
