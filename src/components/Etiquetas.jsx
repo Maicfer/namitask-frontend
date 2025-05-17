@@ -11,13 +11,13 @@ const Etiquetas = () => {
   const fetchEtiquetas = async () => {
     try {
       const res = await axios.get('https://namitask.onrender.com/api/etiquetas/', {
-        headers: { Authorization: `Bearer ${authTokens.access}` }, // ✅ Corregido el uso de backticks
+        headers: { Authorization: `Bearer ${authTokens.access}` },
       });
       setEtiquetas(res.data);
     } catch (err) {
       console.error("Error al cargar etiquetas:", err);
     }
-  }; 
+  };
 
   const crearEtiqueta = async (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const Etiquetas = () => {
       await axios.post(
         'https://namitask.onrender.com/api/etiquetas/',
         { nombre, color },
-        { headers: { Authorization: `Bearer ${authTokens.access}` } } // ✅ Corregido
+        { headers: { Authorization: `Bearer ${authTokens.access}` } }
       );
       setNombre('');
       setColor('');
@@ -37,8 +37,8 @@ const Etiquetas = () => {
 
   const eliminarEtiqueta = async (id) => {
     try {
-      await axios.delete(`https://namitask.onrender.com/api/etiquetas/${id}/`, { // ✅ Corregido uso de comillas invertidas
-        headers: { Authorization: `Bearer ${authTokens.access}` }, // ✅ Corregido
+      await axios.delete(`https://namitask.onrender.com/api/etiquetas/${id}/`, {
+        headers: { Authorization: `Bearer ${authTokens.access}` },
       });
       fetchEtiquetas();
     } catch (err) {
@@ -53,6 +53,13 @@ const Etiquetas = () => {
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded shadow mt-10">
       <h2 className="text-xl font-bold mb-4 text-indigo-600">Gestión de Etiquetas</h2>
+
+      {/* 📌 Botón de acceso al tablero */}
+      <div className="flex justify-end mb-4">
+        <a href="/tablero" className="button-primary">
+          Ir al Tablero
+        </a>
+      </div>
 
       <form onSubmit={crearEtiqueta} className="space-y-2 mb-6">
         <input
